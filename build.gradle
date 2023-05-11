@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id('io.qameta.allure') version '2.11.2'
+}
+
+group 'ru.maruspim'
+version '1.0-SNAPSHOT'
+
+allure {
+    report {   // секция репорта
+        version.set("2.22.0")
+    }
+    adapter { // creates folder build/allure-results
+        aspectjWeaver.set(true) // обработка аннотации @Step
+        frameworks {
+            junit5 { // название фреймворка
+                adapterVersion.set("2.19.0") // версия интеграции фреймворка и Allure
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation (
+            "com.github.javafaker:javafaker:1.0.2",
+            "com.codeborne:selenide:6.12.4",
+            "org.junit.jupiter:junit-jupiter:5.9.2",
+            "org.jetbrains:annotations:23.0.0",
+            'io.qameta.allure:allure-selenide:2.22.0'
+    )
+}
+
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test){
+    testLogging {
+        lifecycle{
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()  // для подключения JUnit5
+}
+
+task testsExecutionByTags(type: Test){
+    useJUnitPlatform{
+        includeTags("remoteTest")
+    }
+}
