@@ -1,12 +1,11 @@
 package ru.maruspim.tests;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import ru.maruspim.tests.TestBase;
 
-public class RegistrationWithFakeTestDataTests extends TestBase {
+public class RegistrationRemoteTests extends TestBase {
 
     @Test
-    @Tag("remoteTest")
+    @Tag("remote")
     void successfulFillFormTest() {
 
         String

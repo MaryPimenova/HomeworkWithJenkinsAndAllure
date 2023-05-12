@@ -64,6 +64,6 @@ test {
 
 task testsExecutionByTags(type: Test){
     useJUnitPlatform{
-        includeTags("remoteTest")
+        includeTags("remote")
     }
 }
