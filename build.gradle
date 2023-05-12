@@ -50,7 +50,7 @@ compileTestJava {
 }
 
 tasks.withType(Test){
-    systemProperties(System.getProperties())
+   systemProperties(System.getProperties())
     testLogging {
         lifecycle{
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -63,7 +63,7 @@ test {
     useJUnitPlatform()  // для подключения JUnit5
 }
 
-task tests_execution_by_tags(type: Test){
+task remote(type: Test){
     useJUnitPlatform{
         includeTags("remote")
     }
