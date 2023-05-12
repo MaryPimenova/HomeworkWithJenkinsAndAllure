@@ -133,7 +133,7 @@ public class RegistrationPageComponent {
         return this;
     }
 
-    @Step("Verify results in the modal fields")
+    @Step("Verify results: field {key} corresponds field {value} in the modal")
     public RegistrationPageComponent verifyResult(String key, String value) {
         resultsModal.verifyResult(key, value);
         return this;
