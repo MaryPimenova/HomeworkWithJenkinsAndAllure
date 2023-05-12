@@ -1,7 +1,10 @@
 package ru.maruspim.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import ru.maruspim.pages.RegistrationPageComponent;
 import ru.maruspim.utils.RandomUtils;
@@ -20,5 +23,9 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true); // активировать потоковое видео при запуске браузера
         capabilities.setCapability("enableVideo", true); // активировать запись видео
         Configuration.browserCapabilities = capabilities;
+    }
+    @BeforeEach
+    void beforeEach() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 }

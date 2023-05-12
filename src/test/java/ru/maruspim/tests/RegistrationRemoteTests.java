@@ -1,14 +1,24 @@
 package ru.maruspim.tests;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
+
 public class RegistrationRemoteTests extends TestBase {
 
+    @Feature("Checking DemoQA registration form fulfilling")
+    @Owner("Mary Pimenova")
     @Test
     @Tag("remote")
+    @DisplayName("DemoQA registration form fulfilling test with annotated steps")
     void successfulFillFormTest() {
 
         String
+                pageUrl = "/automation-practice-form",
                 firstName = randomUtils.createRandomFirstName(),
                 lastName = randomUtils.createRandomLastName(),
                 userEmail = randomUtils.createRandomEmail(),
@@ -23,9 +33,12 @@ public class RegistrationRemoteTests extends TestBase {
                 state = randomUtils.createRandomState(),
                 city = randomUtils.createRandomCity(state);
 
-        registrationPageComponent.openPage("/automation-practice-form")
-                .footerRemoving()
-                .setFirstName(firstName)
+        step("Open DemoQA registration form: ", () -> {
+            registrationPageComponent.openPage(pageUrl)
+                    .footerRemoving();
+        });
+
+        registrationPageComponent.setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
                 .setGenderWrapper(gender)
