@@ -1,6 +1,7 @@
 package ru.maruspim.tests;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,7 @@ public class RegistrationRemoteTests extends TestBase {
                 day = randomUtils.createRandomDay(),
                 subject = randomUtils.createRandomSubject(),
                 hobby = randomUtils.createRandomHobby(),
+                uploadedPicture = "images/batty.jpg",
                 currentAddress = randomUtils.createRandomCurrentAddress(),
                 state = randomUtils.createRandomState(),
                 city = randomUtils.createRandomCity(state);
@@ -37,20 +39,45 @@ public class RegistrationRemoteTests extends TestBase {
             registrationPageComponent.openPage(pageUrl)
                     .footerRemoving();
         });
-
-        registrationPageComponent.setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(userEmail)
-                .setGenderWrapper(gender)
-                .setMobileNumber(mobileNumber)
-                .setDate(day,month,year)
-                .setSubjects(subject)
-                .setHobby(hobby)
-                .uploadPicture("images/batty.jpg")
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
-                .clickSubmit();
+        step("Set first name value: ", () -> {
+            registrationPageComponent.setFirstName(firstName);
+        });
+        step("Set last name value: ", () -> {
+            registrationPageComponent.setLastName(lastName);
+        });
+        step("Set user e-mail value: ", () -> {
+            registrationPageComponent.setUserEmail(userEmail);
+        });
+        step("Select gender value: ", () -> {
+            registrationPageComponent.setGenderWrapper(gender);
+        });
+        step("Set mobile number: ", () -> {
+            registrationPageComponent.setMobileNumber(mobileNumber);
+        });
+        step("Set date (day, month, year): ", () -> {
+            registrationPageComponent.setDate(day,month,year);
+        });
+        step("Set subject: ", () -> {
+            registrationPageComponent.setSubjects(subject);
+        });
+        step("Select hobby: ", () -> {
+            registrationPageComponent.setHobby(hobby);
+        });
+        step("Upload picture: " + uploadedPicture, () -> {
+            registrationPageComponent.uploadPicture(uploadedPicture);
+        });
+        step("Set current address: ", () -> {
+            registrationPageComponent.setCurrentAddress(currentAddress);
+        });
+        step("Select state of living: ", () -> {
+            registrationPageComponent.setState(state);
+        });
+        step("Select city of living: ", () -> {
+            registrationPageComponent.setCity(city);
+        });
+        step("Click submit button: ", () -> {
+            registrationPageComponent.clickSubmit();;
+        });
 
         registrationPageComponent.verifyRegistrationResultsModalAppears()
                 .verifyResult("Student Name", firstName + " " + lastName)

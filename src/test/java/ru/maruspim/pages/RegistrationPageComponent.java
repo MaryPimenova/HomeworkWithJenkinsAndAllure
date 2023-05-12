@@ -1,6 +1,7 @@
 package ru.maruspim.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import ru.maruspim.pages.components.CalendarComponent;
 import ru.maruspim.pages.components.ResultsModal;
 
@@ -63,6 +64,7 @@ public class RegistrationPageComponent {
 
         return this;
     }
+    @Step("Opening the tab Issues")
     public RegistrationPageComponent setMobileNumber(String value) {
         mobileNumberInput.setValue(value);
 
