@@ -39,57 +39,37 @@ public class RegistrationRemoteTests extends TestBase {
             registrationPageComponent.openPage(pageUrl)
                     .footerRemoving();
         });
-        step("Set first name value: ", () -> {
-            registrationPageComponent.setFirstName(firstName);
-        });
-        step("Set last name value: ", () -> {
-            registrationPageComponent.setLastName(lastName);
-        });
-        step("Set user e-mail value: ", () -> {
-            registrationPageComponent.setUserEmail(userEmail);
-        });
-        step("Select gender value: ", () -> {
-            registrationPageComponent.setGenderWrapper(gender);
-        });
-        step("Set mobile number: ", () -> {
-            registrationPageComponent.setMobileNumber(mobileNumber);
-        });
-        step("Set date (day, month, year): ", () -> {
-            registrationPageComponent.setDate(day,month,year);
-        });
-        step("Set subject: ", () -> {
-            registrationPageComponent.setSubjects(subject);
-        });
-        step("Select hobby: ", () -> {
-            registrationPageComponent.setHobby(hobby);
-        });
-        step("Upload picture: " + uploadedPicture, () -> {
-            registrationPageComponent.uploadPicture(uploadedPicture);
-        });
-        step("Set current address: ", () -> {
-            registrationPageComponent.setCurrentAddress(currentAddress);
-        });
-        step("Select state of living: ", () -> {
-            registrationPageComponent.setState(state);
-        });
-        step("Select city of living: ", () -> {
-            registrationPageComponent.setCity(city);
-        });
-        step("Click submit button: ", () -> {
-            registrationPageComponent.clickSubmit();;
+
+        step("Fill the registration form: ", () -> {
+            registrationPageComponent.setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setUserEmail(userEmail)
+                    .setGenderWrapper(gender)
+                    .setMobileNumber(mobileNumber)
+                    .setDate(day,month,year)
+                    .setSubjects(subject)
+                    .setHobby(hobby)
+                    .uploadPicture(uploadedPicture)
+                    .setCurrentAddress(currentAddress)
+                    .setState(state)
+                    .setCity(city)
+                    .clickSubmit();
         });
 
-        registrationPageComponent.verifyRegistrationResultsModalAppears()
-                .verifyResult("Student Name", firstName + " " + lastName)
-                .verifyResult("Student Email", userEmail)
-                .verifyResult("Gender", gender)
-                .verifyResult("Mobile", mobileNumber)
-                .verifyResult("Date of Birth", day + " " + month + "," + year)
-                .verifyResult("Subjects", subject)
-                .verifyResult("Hobbies", hobby)
-                .verifyResult("Picture", "batty.jpg")
-                .verifyResult("Address", currentAddress)
-                .verifyResult("State and City", state + " " + city);
+        step("Verify results: ", () -> {
+            registrationPageComponent.verifyRegistrationResultsModalAppears()
+                    .verifyResult("Student Name", firstName + " " + lastName)
+                    .verifyResult("Student Email", userEmail)
+                    .verifyResult("Gender", gender)
+                    .verifyResult("Mobile", mobileNumber)
+                    .verifyResult("Date of Birth", day + " " + month + "," + year)
+                    .verifyResult("Subjects", subject)
+                    .verifyResult("Hobbies", hobby)
+                    .verifyResult("Picture", "batty.jpg")
+                    .verifyResult("Address", currentAddress)
+                    .verifyResult("State and City", state + " " + city);
+        });
+
 
 
     }
