@@ -63,7 +63,7 @@ test {
     useJUnitPlatform()  // для подключения JUnit5
 }
 
-task testsExecutionByTags(type: Test){
+task tests_execution_by_tags(type: Test){
     useJUnitPlatform{
         includeTags("remote")
     }
