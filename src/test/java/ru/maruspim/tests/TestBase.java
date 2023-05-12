@@ -26,11 +26,11 @@ public class TestBase {
         Configuration.pageLoadStrategy="eager";
 
         String selenoidUrl = System.getProperty("selenoid_url");
-        String selenoidLoginPassword = System.getProperty("selenoid_login_password");
+        String userLoginPassword = System.getProperty("selenoid_login_password");
         selenoidUrl = selenoidUrl.replaceAll("https://", "");
-        Configuration.remote = "https://" + selenoidLoginPassword + "@" + selenoidUrl;
+        Configuration.remote = "https://" + userLoginPassword + "@" + selenoidUrl;    //"https://user1:1234@selenoid.autotests.cloud/wd/hub"
 
-        Configuration.baseUrl = System.getProperty("site_base_url", "https://demoqa.com");
+        Configuration.baseUrl = System.getProperty("base_url", "https://demoqa.com");
 
         String[] browser = System.getProperty("browser", "chrome:100.0").split(":");
         Configuration.browser = browser[0];
