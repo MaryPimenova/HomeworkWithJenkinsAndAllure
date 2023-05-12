@@ -49,7 +49,7 @@ public class RegistrationRemoteTests extends TestBase {
                     .setDate(day,month,year)
                     .setSubjects(subject)
                     .setHobby(hobby)
-                    .uploadPicture(uploadedPicture)
+                    //.uploadPicture(uploadedPicture)
                     .setCurrentAddress(currentAddress)
                     .setState(state)
                     .setCity(city)
