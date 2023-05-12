@@ -26,7 +26,7 @@ public class TestBase {
         Configuration.pageLoadStrategy="eager";
 
         String selenoidUrl = System.getProperty("selenoid_url");
-        String userLoginPassword = System.getProperty("selenoid_login_password");
+        String userLoginPassword = System.getProperty("user_login_password");
         selenoidUrl = selenoidUrl.replaceAll("https://", "");
         Configuration.remote = "https://" + userLoginPassword + "@" + selenoidUrl;    //"https://user1:1234@selenoid.autotests.cloud/wd/hub"
 
