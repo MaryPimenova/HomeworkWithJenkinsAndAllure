@@ -6,7 +6,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import ru.maruspim.helpers.Attach;
 import ru.maruspim.pages.RegistrationPageComponent;
@@ -16,6 +15,7 @@ import ru.maruspim.utils.RandomUtils;
 public class TestBase {
     RegistrationPageComponent registrationPageComponent = new RegistrationPageComponent();
     RandomUtils randomUtils = new RandomUtils();
+
     @BeforeAll
     static void beforeAll() {
         /*Configuration.baseUrl = "https://demoqa.com";
@@ -23,7 +23,7 @@ public class TestBase {
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";*/
 
 
-        Configuration.pageLoadStrategy="eager";
+        Configuration.pageLoadStrategy = "eager";
 
         String selenoidUrl = System.getProperty("selenoid_url");
         String userLoginPassword = System.getProperty("user_login_password");
@@ -43,13 +43,14 @@ public class TestBase {
         capabilities.setCapability("enableVideo", true); // активировать запись видео
         Configuration.browserCapabilities = capabilities;
     }
+
     @BeforeEach
     void beforeEach() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @AfterEach
-    void addAttachments(){
+    void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         //Attach.browserConsoleLogs();

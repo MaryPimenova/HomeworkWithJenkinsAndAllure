@@ -1,12 +1,10 @@
 package ru.maruspim.tests;
+
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class RegistrationRemoteTests extends TestBase {
@@ -46,7 +44,7 @@ public class RegistrationRemoteTests extends TestBase {
                     .setUserEmail(userEmail)
                     .setGenderWrapper(gender)
                     .setMobileNumber(mobileNumber)
-                    .setDate(day,month,year)
+                    .setDate(day, month, year)
                     .setSubjects(subject)
                     .setHobby(hobby)
                     //.uploadPicture(uploadedPicture)
@@ -69,7 +67,6 @@ public class RegistrationRemoteTests extends TestBase {
                     .verifyResult("Address", currentAddress)
                     .verifyResult("State and City", state + " " + city);
         });
-
 
 
     }

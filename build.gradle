@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation (
+    testImplementation(
             "com.github.javafaker:javafaker:1.0.2",
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter:$jUnitVersion",
@@ -49,10 +49,10 @@ compileTestJava {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Test){
-   systemProperties(System.getProperties())
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
     testLogging {
-        lifecycle{
+        lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
@@ -63,8 +63,8 @@ test {
     useJUnitPlatform()  // для подключения JUnit5
 }
 
-task remote(type: Test){
-    useJUnitPlatform{
+task remote(type: Test) {
+    useJUnitPlatform {
         includeTags("remote")
     }
 }
